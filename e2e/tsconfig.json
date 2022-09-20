@@ -1,0 +1,10 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../dist/e2e",
+    "module": "commonjs",
+    "types": ["mocha", "node"],
+    "sourceMap": false
+  },
+  "include": ["src/tests/**/*.spec.ts"]
+}

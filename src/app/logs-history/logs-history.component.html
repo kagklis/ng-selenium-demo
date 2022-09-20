@@ -1,0 +1,31 @@
+<ng-container *ngIf="loggingHistory$ | async as loggingHistory">
+  <div
+    id="logging-history-panel"
+    *ngIf="loggingHistory?.length"
+    class="logging-history"
+  >
+    <div class="logs-header">
+      <h1>Logging History</h1>
+      <button
+        id="clear-history-btn"
+        mat-mini-fab
+        color="accent"
+        (click)="clearHistory()"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+    <div class="logs-container">
+      <p data-test="history-log" *ngFor="let log of loggingHistory">
+        {{ log.timestamp | date: "MMM dd, yyyy HH:mm:ss" }} -
+        <ng-container *ngIf="log.data">
+          {{ log.system ? "Auto-saved: " : "User saved: " }}
+          {{ log.data.firstName }} {{ log.data.lastName }}
+        </ng-container>
+        <ng-container *ngIf="log.error">
+          {{ log.error }}
+        </ng-container>
+      </p>
+    </div>
+  </div>
+</ng-container>
